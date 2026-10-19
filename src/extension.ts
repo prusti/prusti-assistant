@@ -112,9 +112,9 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     prustiButton.command = verifyProgramCommand;
     prustiButton.text = "$(play) Prusti";
     prustiButton.tooltip = new vscode.MarkdownString(
-        "Run the [Prusti verifier](https://github.com/viperproject/prusti-dev) on the current file.\n\n" +
+        "Run the [Prusti verifier](https://github.com/prusti/prusti) on the current file.\n\n" +
         "---\n\n" +
-        "$(link) [User guide](https://viperproject.github.io/prusti-dev/user-guide/)\n\n" +
+        "$(link) [User guide](https://prusti.github.io/prusti/user-guide/)\n\n" +
         "$(link) [Zulip chat](https://prusti.zulipchat.com/)\n\n" +
         `[Show version](command:${showVersionCommand})\n\n` +
         `[Update Prusti](command:${updateCommand})\n\n` +

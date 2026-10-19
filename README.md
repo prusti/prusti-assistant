@@ -3,13 +3,13 @@ Prusti Assistant
 
 [![Latest published version for VS Code](https://img.shields.io/visual-studio-marketplace/v/viper-admin.prusti-assistant?label=VS%20Code)](https://marketplace.visualstudio.com/items?itemName=viper-admin.prusti-assistant)
 [![Latest published version for Open VSX](https://img.shields.io/open-vsx/v/viper-admin/prusti-assistant?label=Open%20VSX)](https://open-vsx.org/extension/viper-admin/prusti-assistant)
-[![Status of the "test and publish" job](https://github.com/viperproject/prusti-assistant/workflows/Test%20and%20publish/badge.svg)](https://github.com/viperproject/prusti-assistant/actions?query=workflow%3A"Test+and+publish"+branch%3Amaster)
+[![Status of the "test and publish" job](https://github.com/prusti/prusti-assistant/workflows/Test%20and%20publish/badge.svg)](https://github.com/prusti/prusti-assistant/actions?query=workflow%3A"Test+and+publish"+branch%3Amaster)
 [![Test coverage status](https://codecov.io/gh/viperproject/prusti-assistant/branch/master/graph/badge.svg?token=D4HOAD0KRU)](https://codecov.io/gh/viperproject/prusti-assistant)
 [![Sonarcloud quality gate status](https://sonarcloud.io/api/project_badges/measure?project=viperproject_prusti-assistant&metric=alert_status)](https://sonarcloud.io/dashboard?id=viperproject_prusti-assistant)
 
-This Visual Studio Code extension provides interactive IDE features for verifying Rust programs with the [Prusti verifier](https://github.com/viperproject/prusti-dev).
+This Visual Studio Code extension provides interactive IDE features for verifying Rust programs with the [Prusti verifier](https://github.com/prusti/prusti).
 
-For advanced use cases, consider switching to the [command-line version of Prusti](https://github.com/viperproject/prusti-dev).
+For advanced use cases, consider switching to the [command-line version of Prusti](https://github.com/prusti/prusti).
 
 ## Screenshot
 
@@ -94,7 +94,7 @@ In addition, due to a technical limitation the Prusti server reads its configura
 
 To check whether Prusti picked up the `Prusti.toml` that you wrote, try writing `make_prusti_crash=true` in it (or any other nonexistent configuration flag). When doing so, the IDE should report that Prusti crashed.
 
-The list of the supported Prusti flags is available [here](https://viperproject.github.io/prusti-dev/dev-guide/config/flags.html), in Prusti's developer guide. Note that by setting these flags in the wrong way it is possible to get incorrect verification results. Many flags only exist of debugging reasons and to provide workarounds in selected cases.
+The list of the supported Prusti flags is available [here](https://prusti.github.io/prusti/dev-guide/config/flags.html), in Prusti's developer guide. Note that by setting these flags in the wrong way it is possible to get incorrect verification results. Many flags only exist of debugging reasons and to provide workarounds in selected cases.
 
 ## Troubleshooting
 
@@ -113,4 +113,4 @@ If Prusti fails to run, you can inspect Prusti's log from VS Code (View -> Outpu
 
 Thanks to @Pointerbender, @michaelpaper, @fcoury, @Gadiguibou, @djc for their help in reporting, debugging and solving many of these issues!
 
-In case you still experience difficulties or encounter bugs while using Prusti Assistant, please [open an issue](https://github.com/viperproject/prusti-assistant/issues) or contact us in the [Zulip chat](https://prusti.zulipchat.com/).
+In case you still experience difficulties or encounter bugs while using Prusti Assistant, please [open an issue](https://github.com/prusti/prusti-assistant/issues) or contact us in the [Zulip chat](https://prusti.zulipchat.com/).

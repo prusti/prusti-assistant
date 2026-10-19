@@ -317,7 +317,7 @@ export class VerificationManager {
 
         let durationSecMsg: string | null = null;
         const crashErrorMsg = "Prusti encountered an unexpected error. " +
-            "We would appreciate a [bug report](https://github.com/viperproject/prusti-dev/issues/new). " +
+            "We would appreciate a [bug report](https://github.com/prusti/prusti/issues/new). " +
             "See the log (View -> Output -> Prusti Assistant) for more details.";
         let crashed = false;
         try {

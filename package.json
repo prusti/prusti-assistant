@@ -97,21 +97,6 @@
         "configuration": {
             "title": "Prusti Assistant",
             "properties": {
-                "prusti-assistant.buildChannel": {
-                    "type": "string",
-                    "default": "LatestRelease",
-                    "enum": [
-                        "LatestRelease",
-                        "LatestDev",
-                        "Local"
-                    ],
-                    "enumDescriptions": [
-                        "The latest release of Prusti.",
-                        "A version with frequent updates that might be unstable or have other issues.",
-                        "A local build of Prusti, specified via localPrustiPath."
-                    ],
-                    "description": "Specifies from which channel Prusti builds are downloaded."
-                },
                 "prusti-assistant.checkForUpdates": {
                     "type": "boolean",
                     "default": true,
@@ -120,7 +105,7 @@
                 "prusti-assistant.localPrustiPath": {
                     "type": "string",
                     "default": "",
-                    "description": "Specifies the path to the local Prusti installation (has no effect if buildChannel is not set to Local)."
+                    "description": "Specifies the path to the local Prusti installation (has no effect if prustiVersion is not set to Local)."
                 },
                 "prusti-assistant.verifyOnSave": {
                     "type": "boolean",
@@ -223,14 +208,16 @@
                 },
                 "prusti-assistant.prustiVersion": {
                     "type": "string",
-                    "default": "Latest",
+                    "default": "LatestDev",
                     "enum": [
                         "Latest",
+                        "LatestDev",
                         "Tag",
                         "Local"
                     ],
                     "enumDescriptions": [
                         "The latest release of Prusti.",
+                        "The latest development build of Prusti, with frequent updates that might be unstable or have other issues.",
                         "A fixed version of Prusti, specified via prustiTag.",
                         "A local build of Prusti, specified via localPrustiPath."
                     ],
@@ -239,7 +226,7 @@
                 "prusti-assistant.prustiTag": {
                     "type": "string",
                     "default": "",
-                    "description": "Specifies the GitHub tag of the Prusti release to be used. Visit https://github.com/viperproject/prusti-dev/releases to see all the available tags. This setting is only used if prustiVersion is set to Tag."
+                    "description": "Specifies the GitHub tag of the Prusti release to be used. Visit https://github.com/prusti/prusti/releases to see all the available tags. This setting is only used if prustiVersion is set to Tag."
                 }
             }
         }

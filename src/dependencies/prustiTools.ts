@@ -61,8 +61,10 @@ export async function prustiTools(
 
 function identifier(platform: vvt.Platform): string {
     switch (platform) {
-        case vvt.Platform.Mac:
-            return "macos";
+        case vvt.Platform.Mac: {
+            const arch = process.arch === "arm64" ? "-arm64" : "-x64";
+            return `macos${arch}`;
+        }
         case vvt.Platform.Windows: {
             const arch = process.arch === "arm64" ? "-arm64" : "-x64";
             return `windows${arch}`;

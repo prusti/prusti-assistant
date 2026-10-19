@@ -11,6 +11,7 @@ export function config(): vscode.WorkspaceConfiguration {
 
 export enum PrustiVersion {
     Latest = "Latest",
+    LatestDev = "LatestDev",
     Tag = "Tag",
     Local = "Local"
 }
@@ -19,7 +20,7 @@ export const prustiVersionKey = "prustiVersion";
 export const prustiVersionPath = `${namespace}.${prustiVersionKey}`;
 
 export function prustiVersion(): PrustiVersion {
-    const defaultVersion = PrustiVersion.Latest;
+    const defaultVersion = PrustiVersion.LatestDev;
     const versionName = config().get(prustiVersionKey, defaultVersion as string);
     const version = PrustiVersion[
         // Convert string to enum. See https://stackoverflow.com/a/17381004/2491528

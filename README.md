@@ -67,7 +67,7 @@ The main configuration options used by this extension are the following:
 * `prusti-assistant.verifyOnOpen`: Specifies if programs should be verified when opened.
 * `prusti-assistant.checkForUpdates`: Specifies if Prusti should check for updates at startup.
 * `prusti-assistant.javaHome`: Specifies the path of the Java home folder. Leave empty to auto-detect it.
-* `prusti-assistant.prustiVersion`: Allows to choose between the latest published Prusti version (the default), a fixed release specified as a GitHub tag (see the [list of releases](https://github.com/viperproject/prusti-dev/releases)), or a local build of Prusti.
+* `prusti-assistant.prustiVersion`: Allows to choose between the latest release of Prusti, the latest development build of Prusti (published on every change, and therefore less stable), a fixed release specified as a GitHub tag (see the [list of releases](https://github.com/prusti/prusti/releases)), or a local build of Prusti. The release version of this extension defaults to the latest release, its pre-release version to the latest development build.
 * `prusti-assistant.contractsAsDefinitions`: If enabled, for every (impure a.t.m.) function call, one can invoke "peek definitions" to see its contracts. But this also means "jump-to-definition" will not work anymore for most functions if turned on.
 * `prusti-assistant.showViperMessages`: If enabled, more information about quantifiers is available.
 

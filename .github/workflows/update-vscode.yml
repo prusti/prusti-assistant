@@ -26,13 +26,21 @@ jobs:
           echo "TEST_VSCODE_VERSION=$TEST_VSCODE_VERSION" >> $GITHUB_ENV
           echo "LATEST_VSCODE_VERSION=$LATEST_VSCODE_VERSION" >> $GITHUB_ENV
 
+      - name: Generate a token for the Prusti bot
+        id: bot-token
+        uses: actions/create-github-app-token@v3
+        if: env.TEST_VSCODE_VERSION != env.LATEST_VSCODE_VERSION
+        with:
+          client-id: ${{ vars.BOT_CLIENT_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+
       - name: Open a pull request
         uses: peter-evans/create-pull-request@v3
         if: env.TEST_VSCODE_VERSION != env.LATEST_VSCODE_VERSION
         with:
-          # Use viper-admin's token to workaround a restriction of GitHub.
+          # Use the bot's token so that the pull request triggers the tests.
           # See: https://github.com/peter-evans/create-pull-request/issues/48
-          token: ${{ secrets.VIPER_ADMIN_TOKEN }}
+          token: ${{ steps.bot-token.outputs.token }}
           commit-message: Update VS Code to ${{ env.LATEST_VSCODE_VERSION }}
           title: Update VS Code to ${{ env.LATEST_VSCODE_VERSION }}
           branch: auto-update-vscode

@@ -43,7 +43,7 @@ jobs:
         uses: coactions/setup-xvfb@v1
         id: runTests
         env:
-          GITHUB_TOKEN: ${{ secrets.VIPER_ADMIN_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           run: npm test --full-trace
 

@@ -1,1 +1,35 @@
-[]
+[
+    {
+        "uri": "crates/no_contracts/<crate attribute>",
+        "range": {
+            "start": {
+                "line": 0,
+                "character": 11
+            },
+            "end": {
+                "line": 0,
+                "character": 31
+            }
+        },
+        "severity": 1,
+        "message": "[unused_features] feature `stmt_expr_attributes` is declared but not used.",
+        "relatedInformation": [
+            {
+                "location": {
+                    "uri": "crates/no_contracts/<crate attribute>",
+                    "range": {
+                        "start": {
+                            "line": 0,
+                            "character": 11
+                        },
+                        "end": {
+                            "line": 0,
+                            "character": 31
+                        }
+                    }
+                },
+                "message": "`#[warn(unused_features)]` (part of `#[warn(unused)]`) on by default"
+            }
+        ]
+    }
+]

@@ -3,13 +3,13 @@ Prusti Assistant
 
 [![Latest published version for VS Code](https://img.shields.io/visual-studio-marketplace/v/viper-admin.prusti-assistant?label=VS%20Code)](https://marketplace.visualstudio.com/items?itemName=viper-admin.prusti-assistant)
 [![Latest published version for Open VSX](https://img.shields.io/open-vsx/v/viper-admin/prusti-assistant?label=Open%20VSX)](https://open-vsx.org/extension/viper-admin/prusti-assistant)
-[![Status of the "test and publish" job](https://github.com/viperproject/prusti-assistant/workflows/Test%20and%20publish/badge.svg)](https://github.com/viperproject/prusti-assistant/actions?query=workflow%3A"Test+and+publish"+branch%3Amaster)
+[![Status of the "test and publish" job](https://github.com/prusti/prusti-assistant/workflows/Test%20and%20publish/badge.svg)](https://github.com/prusti/prusti-assistant/actions?query=workflow%3A"Test+and+publish"+branch%3Amaster)
 [![Test coverage status](https://codecov.io/gh/viperproject/prusti-assistant/branch/master/graph/badge.svg?token=D4HOAD0KRU)](https://codecov.io/gh/viperproject/prusti-assistant)
 [![Sonarcloud quality gate status](https://sonarcloud.io/api/project_badges/measure?project=viperproject_prusti-assistant&metric=alert_status)](https://sonarcloud.io/dashboard?id=viperproject_prusti-assistant)
 
-This Visual Studio Code extension provides interactive IDE features for verifying Rust programs with the [Prusti verifier](https://github.com/viperproject/prusti-dev).
+This Visual Studio Code extension provides interactive IDE features for verifying Rust programs with the [Prusti verifier](https://github.com/prusti/prusti).
 
-For advanced use cases, consider switching to the [command-line version of Prusti](https://github.com/viperproject/prusti-dev).
+For advanced use cases, consider switching to the [command-line version of Prusti](https://github.com/prusti/prusti).
 
 ## Screenshot
 
@@ -24,7 +24,7 @@ In order to use this extension, please install the following components:
 * Java JDK version 11 or later, 64 bit. For example, [OpenJDK](https://jdk.java.net/).
 * [Rustup version 1.23.0 or later](https://rustup.rs/). On Windows, this in turn requires the [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
 
-If anything fails, check the "Troubleshooting" section below. Note that macOS running on M1 is currently not supported by this extension.
+If anything fails, check the "Troubleshooting" section below.
 
 ## First Usage
 
@@ -67,7 +67,9 @@ The main configuration options used by this extension are the following:
 * `prusti-assistant.verifyOnOpen`: Specifies if programs should be verified when opened.
 * `prusti-assistant.checkForUpdates`: Specifies if Prusti should check for updates at startup.
 * `prusti-assistant.javaHome`: Specifies the path of the Java home folder. Leave empty to auto-detect it.
-* `prusti-assistant.prustiVersion`: Allows to choose between the latest published Prusti version (the default), a fixed release specified as a GitHub tag (see the [list of releases](https://github.com/viperproject/prusti-dev/releases)), or a local build of Prusti.
+* `prusti-assistant.prustiVersion`: Allows to choose between the latest release of Prusti, the latest development build of Prusti (published on every change, and therefore less stable), a fixed release specified as a GitHub tag (see the [list of releases](https://github.com/prusti/prusti/releases)), or a local build of Prusti. The release version of this extension defaults to the latest release, its pre-release version to the latest development build.
+* `prusti-assistant.contractsAsDefinitions`: If enabled, for every (impure a.t.m.) function call, one can invoke "peek definitions" to see its contracts. But this also means "jump-to-definition" will not work anymore for most functions if turned on.
+* `prusti-assistant.showViperMessages`: If enabled, more information about quantifiers is available.
 
 ### Inline Code Diagnostics
 
@@ -92,7 +94,7 @@ In addition, due to a technical limitation the Prusti server reads its configura
 
 To check whether Prusti picked up the `Prusti.toml` that you wrote, try writing `make_prusti_crash=true` in it (or any other nonexistent configuration flag). When doing so, the IDE should report that Prusti crashed.
 
-The list of the supported Prusti flags is available [here](https://viperproject.github.io/prusti-dev/dev-guide/config/flags.html), in Prusti's developer guide. Note that by setting these flags in the wrong way it is possible to get incorrect verification results. Many flags only exist of debugging reasons and to provide workarounds in selected cases.
+The list of the supported Prusti flags is available [here](https://prusti.github.io/prusti/dev-guide/config/flags.html), in Prusti's developer guide. Note that by setting these flags in the wrong way it is possible to get incorrect verification results. Many flags only exist of debugging reasons and to provide workarounds in selected cases.
 
 ## Troubleshooting
 
@@ -107,8 +109,7 @@ If Prusti fails to run, you can inspect Prusti's log from VS Code (View -> Outpu
 | `error: the 'cargo' binary, normally provided by the 'cargo' component, is not applicable to the 'nightly-2021-09-20-x86_64-unknown-linux-gnu' toolchain` <br/> or <br/> `error[E0463]: can't find crate for std` <br/> or <br/> `error[E0463]: can't find crate for core` | The Rust toolchain installed by Rustup is probably corrupted (see issue [rustup/#2417](https://github.com/rust-lang/rustup/issues/2417)). [Uninstall](https://stackoverflow.com/questions/42322879/how-to-remove-rust-compiler-toolchains-with-rustup) the nightly toolchain mentioned in the error (or all installed nightly toolchains). Then, rerun Prusti. |
 | `error: no override and no default toolchain set` | Rustup has probably been installed without the `default` toolchain. [Install it](https://stackoverflow.com/a/46864309/2491528), then rerun Prusti. |
 | `libssl.so.1.1: cannot open shared object file: No such file or directory` on Ubuntu 22.04 | Ubuntu 22.04 deprecated `libssl1.1` and moved to `libssl3`. Consider [this solution](https://stackoverflow.com/a/72366805/2491528) as a temporary workaround to install `libssl1.1`, or compile Prusti from source code to make it use `libssl3`. |
-| On macOS running on an M1 chip, the extension doesn't work and the log contains messages such as `incompatible architecture (have (arm64), need (x86_64))`. | We currently don't release precompiled arm64 binaries for macOS. Until we do so, the only option is to [compile Prusti from source code](https://github.com/viperproject/prusti-dev). |
 
 Thanks to @Pointerbender, @michaelpaper, @fcoury, @Gadiguibou, @djc for their help in reporting, debugging and solving many of these issues!
 
-In case you still experience difficulties or encounter bugs while using Prusti Assistant, please [open an issue](https://github.com/viperproject/prusti-assistant/issues) or contact us in the [Zulip chat](https://prusti.zulipchat.com/).
+In case you still experience difficulties or encounter bugs while using Prusti Assistant, please [open an issue](https://github.com/prusti/prusti-assistant/issues) or contact us in the [Zulip chat](https://prusti.zulipchat.com/).

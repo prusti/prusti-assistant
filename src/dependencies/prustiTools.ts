@@ -5,6 +5,10 @@ import * as process from "process";
 import * as fs from "fs-extra";
 import * as config from "../config";
 
+const PRUSTI_ORG = "prusti";
+const PRUSTI_REPO = "prusti";
+const PRUSTI_RELEASE_PREFIX = "prusti-release";
+
 export async function prustiTools(
     platform: vvt.Platform,
     context: vscode.ExtensionContext
@@ -18,17 +22,17 @@ export async function prustiTools(
         console.info("Using authorization token");
     }
 
-    // Get the latest among releases and pre-releases
-    const getLatestReleaseUrl = (): Promise<string> => {
+    // Get the latest release; development builds are published as pre-releases
+    const getLatestReleaseUrl = (includePrereleases: boolean) => (): Promise<string> => {
         return vvt.GitHubReleaseAsset.getLatestAssetUrl(
-            "viperproject", "prusti-dev", `prusti-release-${id}.zip`, true, authorization_token,
+            PRUSTI_ORG, PRUSTI_REPO, `${PRUSTI_RELEASE_PREFIX}-${id}.zip`, includePrereleases, authorization_token,
         );
     }
 
     const getTaggedReleaseUrl = (): Promise<string> => {
         const tag = config.prustiTag();
         return vvt.GitHubReleaseAsset.getTaggedAssetUrl(
-            "viperproject", "prusti-dev", `prusti-release-${id}.zip`, tag, authorization_token,
+            PRUSTI_ORG, PRUSTI_REPO, `${PRUSTI_RELEASE_PREFIX}-${id}.zip`, tag, authorization_token,
         );
     }
 
@@ -48,8 +52,9 @@ export async function prustiTools(
     }
 
     return new vvt.Dependency(
-        path.join(context.globalStoragePath, "prustiTools"),
-        [version.Latest, new vvt.GitHubZipExtractor(getLatestReleaseUrl, "prusti", authorization_token)],
+        path.join(context.globalStoragePath, "prustiTools2"),
+        [version.Latest, new vvt.GitHubZipExtractor(getLatestReleaseUrl(false), "prusti", authorization_token)],
+        [version.LatestDev, new vvt.GitHubZipExtractor(getLatestReleaseUrl(true), "prusti", authorization_token)],
         [version.Tag, new vvt.GitHubZipExtractor(getTaggedReleaseUrl, "prusti", authorization_token)],
         [version.Local, new vvt.LocalReference(config.localPrustiPath())],
     );
@@ -57,11 +62,15 @@ export async function prustiTools(
 
 function identifier(platform: vvt.Platform): string {
     switch (platform) {
-        case vvt.Platform.Mac:
-            return "macos";
-        case vvt.Platform.Windows:
-            return "windows";
+        case vvt.Platform.Mac: {
+            const arch = process.arch === "arm64" ? "-arm64" : "-x64";
+            return `macos${arch}`;
+        }
+        case vvt.Platform.Windows: {
+            const arch = process.arch === "arm64" ? "-arm64" : "-x64";
+            return `windows${arch}`;
+        }
         case vvt.Platform.Linux:
-            return "ubuntu";
+            return "ubuntu-latest";
     }
 }

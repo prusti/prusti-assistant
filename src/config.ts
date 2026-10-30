@@ -11,6 +11,7 @@ export function config(): vscode.WorkspaceConfiguration {
 
 export enum PrustiVersion {
     Latest = "Latest",
+    LatestDev = "LatestDev",
     Tag = "Tag",
     Local = "Local"
 }
@@ -19,7 +20,7 @@ export const prustiVersionKey = "prustiVersion";
 export const prustiVersionPath = `${namespace}.${prustiVersionKey}`;
 
 export function prustiVersion(): PrustiVersion {
-    const defaultVersion = PrustiVersion.Latest;
+    const defaultVersion = PrustiVersion.LatestDev;
     const versionName = config().get(prustiVersionKey, defaultVersion as string);
     const version = PrustiVersion[
         // Convert string to enum. See https://stackoverflow.com/a/17381004/2491528
@@ -93,7 +94,14 @@ export function serverAddress(): string {
 }
 
 export function extraPrustiEnv(): Record<string, string> {
-    return config().get("extraPrustiEnv", {});
+    const extraVerifierArgs = extraSiliconArgs();
+    return {
+        // Not set via `extraSiliconArgs`: Prusti always passes this option to
+        // Silicon, which rejects it when it is given twice.
+        ...(generateBlockMessages() ? {"PRUSTI_NUM_ERRORS_PER_FUNCTION": "0"} : {}),
+        ...(extraVerifierArgs.length > 0 ? {"PRUSTI_EXTRA_VERIFIER_ARGS": extraVerifierArgs} : {}),
+        ...config().get("extraPrustiEnv", {}),
+    };
 }
 
 export function extraPrustiRustcArgs(): string[] {
@@ -106,4 +114,33 @@ export function extraCargoPrustiArgs(): string[] {
 
 export function extraPrustiServerArgs(): string[] {
     return config().get("extraPrustiServerArgs", []);
+}
+
+export function contractsAsDefinitions(): boolean {
+    return config().get("contractsAsDefinitions", false);
+}
+
+export function reportViperMessages(): boolean {
+    return config().get("reportViperMessages", true);
+}
+
+export function z3QiProfileFreq(): number {
+    return config().get("z3QiProfileFreq", 100);
+}
+
+export function generateBlockMessages(): boolean {
+  return config().get("generateBlockMessages", true)
+}
+
+export function blockUpdateInterval(): number {
+  return config().get("blockUpdateInterval", 200)
+}
+
+export function forceBlockUpdateInterval(): number {
+    return config().get("forceBlockUpdateInterval", 1000)
+}
+
+export function extraSiliconArgs(): string {
+    const extraArgs: string[] = config().get("extraSiliconArgs", []);
+    return extraArgs.join(' ');
 }

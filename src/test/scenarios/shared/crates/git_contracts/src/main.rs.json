@@ -63,7 +63,7 @@
                     }
                 },
                 "severity": 0,
-                "message": "[Prusti: verification error] precondition might not hold",
+                "message": "[Prusti: verification error] precondition might not hold.",
                 "relatedInformation": [
                     {
                         "location": {

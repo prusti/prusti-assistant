@@ -64,18 +64,18 @@
                     }
                 },
                 "severity": 0,
-                "message": "[Prusti: verification error] precondition might not hold",
+                "message": "[Prusti: verification error] precondition of `core::panicking::panic` (called by this macro expansion) might not hold",
                 "relatedInformation": [
                     {
                         "location": {
-                            "uri": "../../../../../../../Users/runner/work/prusti-dev/prusti-dev/prusti-contracts/prusti-contracts/src/core_spec/mod.rs",
+                            "uri": "../prusti-contracts/src/core_spec/panicking.rs",
                             "range": {
                                 "start": {
-                                    "line": 19,
+                                    "line": 4,
                                     "character": 11
                                 },
                                 "end": {
-                                    "line": 19,
+                                    "line": 4,
                                     "character": 16
                                 }
                             }
@@ -151,18 +151,18 @@
                     }
                 },
                 "severity": 0,
-                "message": "[Prusti: verification error] precondition might not hold",
+                "message": "[Prusti: verification error] precondition of `core::panicking::panic` (called by this macro expansion) might not hold",
                 "relatedInformation": [
                     {
                         "location": {
-                            "uri": "../../home/runner/work/prusti-dev/prusti-dev/prusti-contracts/prusti-contracts/src/core_spec/mod.rs",
+                            "uri": "../prusti-contracts/src/core_spec/panicking.rs",
                             "range": {
                                 "start": {
-                                    "line": 19,
+                                    "line": 4,
                                     "character": 11
                                 },
                                 "end": {
-                                    "line": 19,
+                                    "line": 4,
                                     "character": 16
                                 }
                             }
@@ -238,18 +238,18 @@
                     }
                 },
                 "severity": 0,
-                "message": "[Prusti: verification error] precondition might not hold",
+                "message": "[Prusti: verification error] precondition of `core::panicking::panic` (called by this macro expansion) might not hold",
                 "relatedInformation": [
                     {
                         "location": {
-                            "uri": "../../../../../../a/prusti-dev/prusti-dev/prusti-contracts/prusti-contracts/src/core_spec/mod.rs",
+                            "uri": "../prusti-contracts/src/core_spec/panicking.rs",
                             "range": {
                                 "start": {
-                                    "line": 19,
+                                    "line": 4,
                                     "character": 11
                                 },
                                 "end": {
-                                    "line": 19,
+                                    "line": 4,
                                     "character": 16
                                 }
                             }

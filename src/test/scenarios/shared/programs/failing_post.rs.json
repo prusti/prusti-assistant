@@ -12,7 +12,7 @@
             }
         },
         "severity": 0,
-        "message": "[Prusti: verification error] postcondition might not hold",
+        "message": "[Prusti: verification error] postcondition might not hold.",
         "relatedInformation": []
     }
 ]

@@ -1,6 +1,6 @@
 [
     {
-        "uri": "crates/contracts_0.1/src/main.rs",
+        "uri": "crates/contracts_0.3/src/main.rs",
         "range": {
             "start": {
                 "line": 3,
@@ -16,7 +16,7 @@
         "relatedInformation": [
             {
                 "location": {
-                    "uri": "crates/contracts_0.1/src/main.rs",
+                    "uri": "crates/contracts_0.3/src/main.rs",
                     "range": {
                         "start": {
                             "line": 3,
@@ -32,7 +32,7 @@
             },
             {
                 "location": {
-                    "uri": "crates/contracts_0.1/src/main.rs",
+                    "uri": "crates/contracts_0.3/src/main.rs",
                     "range": {
                         "start": {
                             "line": 3,
@@ -49,7 +49,7 @@
         ]
     },
     {
-        "uri": "crates/contracts_0.1/src/main.rs",
+        "uri": "crates/contracts_0.3/src/main.rs",
         "range": {
             "start": {
                 "line": 8,
@@ -61,11 +61,11 @@
             }
         },
         "severity": 0,
-        "message": "[Prusti: verification error] precondition might not hold",
+        "message": "[Prusti: verification error] precondition might not hold.",
         "relatedInformation": [
             {
                 "location": {
-                    "uri": "crates/contracts_0.1/src/main.rs",
+                    "uri": "crates/contracts_0.3/src/main.rs",
                     "range": {
                         "start": {
                             "line": 2,

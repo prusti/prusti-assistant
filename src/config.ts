@@ -95,11 +95,13 @@ export function serverAddress(): string {
 
 export function extraPrustiEnv(): Record<string, string> {
     const extraVerifierArgs = extraSiliconArgs();
-    if (extraVerifierArgs.length > 0) {
-        return {"PRUSTI_EXTRA_VERIFIER_ARGS": extraVerifierArgs, ...config().get("extraPrustiEnv", {})};
-    } else {
-        return config().get("extraPrustiEnv", {});
-    }
+    return {
+        // Not set via `extraSiliconArgs`: Prusti always passes this option to
+        // Silicon, which rejects it when it is given twice.
+        ...(generateBlockMessages() ? {"PRUSTI_NUM_ERRORS_PER_FUNCTION": "0"} : {}),
+        ...(extraVerifierArgs.length > 0 ? {"PRUSTI_EXTRA_VERIFIER_ARGS": extraVerifierArgs} : {}),
+        ...config().get("extraPrustiEnv", {}),
+    };
 }
 
 export function extraPrustiRustcArgs(): string[] {
@@ -140,18 +142,5 @@ export function forceBlockUpdateInterval(): number {
 
 export function extraSiliconArgs(): string {
     const extraArgs: string[] = config().get("extraSiliconArgs", []);
-    if (generateBlockMessages()) {
-        let defaultnumberOfErrorsToReport = true;
-        for (const arg of extraArgs) {
-            if (arg.startsWith("--numberOfErrorsToReport")) {
-                defaultnumberOfErrorsToReport = false;
-                break;
-            }
-        }
-        if (defaultnumberOfErrorsToReport) {
-            extraArgs.push("--numberOfErrorsToReport 0");
-        }
-    }
-    
     return extraArgs.join(' ');
 }

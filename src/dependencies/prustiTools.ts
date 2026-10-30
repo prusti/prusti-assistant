@@ -71,6 +71,6 @@ function identifier(platform: vvt.Platform): string {
             return `windows${arch}`;
         }
         case vvt.Platform.Linux:
-            return "ubuntu-22.04";
+            return "ubuntu-latest";
     }
 }

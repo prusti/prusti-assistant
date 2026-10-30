@@ -204,7 +204,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "markdownDescription": "Specifies additional environment variables to be passed to all Silicon runs. Remember to restart the Prusti Server after modifying this setting. If `#prusti-assistant.reportBlockMessages#` is set, the default value receives an additional `--numberOfErrorsToReport 0`. May be overruled by `#prusti-assistant.extraPrustiEnv#`. A list of option can be found in the [Silicon wiki](https://github.com/viperproject/silicon/wiki/Command-Line-Options)."
+                    "markdownDescription": "Specifies additional environment variables to be passed to all Silicon runs. Remember to restart the Prusti Server after modifying this setting. Do not include `--numberOfErrorsToReport`, because Prusti always sets it and Silicon rejects repeated options; set `PRUSTI_NUM_ERRORS_PER_FUNCTION` in `#prusti-assistant.extraPrustiEnv#` instead. If `#prusti-assistant.generateBlockMessages#` is set, `PRUSTI_NUM_ERRORS_PER_FUNCTION` defaults to `0`. May be overruled by `#prusti-assistant.extraPrustiEnv#`. A list of option can be found in the [Silicon wiki](https://github.com/viperproject/silicon/wiki/Command-Line-Options)."
                 },
                 "prusti-assistant.prustiVersion": {
                     "type": "string",

@@ -39,11 +39,18 @@ jobs:
       - name: Package the extension
         run: npm run package
 
+      # The git_contracts test depends on prusti/prusti, and the pcg submodule
+      # of that repo has an SSH URL. Remove this once that URL uses HTTPS.
+      - name: Fetch GitHub submodules over HTTPS
+        shell: bash
+        run: git config --global url."https://github.com/".insteadOf "git@github.com:"
+
       - name: Run tests (headless)
         uses: coactions/setup-xvfb@b6b4fcfb9f5a895edadc3bc76318fae0ac17c8b3 # v1
         id: runTests
         env:
           GITHUB_TOKEN: ${{ secrets.VIPER_ADMIN_TOKEN }}
+          CARGO_NET_GIT_FETCH_WITH_CLI: true
         with:
           run: npm test --full-trace
 

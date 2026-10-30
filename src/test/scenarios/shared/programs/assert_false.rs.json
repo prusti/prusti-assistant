@@ -242,7 +242,7 @@
                 "relatedInformation": [
                     {
                         "location": {
-                            "uri": "../prusti-contracts/src/core_spec/panicking.rs",
+                            "uri": "D:/prusti-contracts/src/core_spec/panicking.rs",
                             "range": {
                                 "start": {
                                     "line": 4,

@@ -95,7 +95,7 @@ jobs:
         run: npm run package -- ${{ github.ref == 'refs/heads/pre-release' && '--pre-release' || '' }}
 
       - name: Publish the extension to Visual Studio Marketplace
-        uses: HaaLeo/publish-vscode-extension@f4ece70b4398e42c5d98de5a14ff6f3b3eb74b10 # v1.7.0
+        uses: HaaLeo/publish-vscode-extension@f4ece70f329f66686bd71c54b1671353fe320e49 # v1.7.0
         if: env.CURRENT_VERSION != env.LAST_PUBLISHED_VERSION
         with:
           pat: ${{ secrets.VSCE_TOKEN }}
@@ -105,7 +105,7 @@ jobs:
           preRelease: ${{ github.ref == 'refs/heads/pre-release' }}
 
       - name: Publish the extension to Open VSX Registry
-        uses: HaaLeo/publish-vscode-extension@f4ece70b4398e42c5d98de5a14ff6f3b3eb74b10 # v1.7.0
+        uses: HaaLeo/publish-vscode-extension@f4ece70f329f66686bd71c54b1671353fe320e49 # v1.7.0
         if: env.CURRENT_VERSION != env.LAST_PUBLISHED_VERSION
         with:
           pat: ${{ secrets.OPEN_VSX_TOKEN }}

@@ -2,7 +2,7 @@
 	"name": "prusti-assistant",
 	"displayName": "Prusti Assistant",
 	"description": "Verify Rust programs with the Prusti verifier.",
-	"version": "0.12.7",
+	"version": "0.12.8",
 	"publisher": "viper-admin",
 	"repository": {
 		"type": "git",
@@ -76,7 +76,7 @@
 						"Local"
 					],
 					"enumDescriptions": [
-						"The latest release of Prusti.",
+						"The latest Prusti release supported by this version of the extension (v-2024-02-28-1817).",
 						"A fixed version of Prusti, specified via prustiTag.",
 						"A local build of Prusti, specified via localPrustiPath."
 					],
@@ -95,7 +95,7 @@
 				"prusti-assistant.prustiTag": {
 					"type": "string",
 					"default": "",
-					"description": "Specifies the GitHub tag of the Prusti release to be used. Visit https://github.com/viperproject/prusti-dev/releases to see all the available tags. This setting is only used if prustiVersion is set to Tag."
+					"description": "Specifies the GitHub tag of the Prusti release to be used. Visit https://github.com/prusti/prusti/releases to see all the available tags. This setting is only used if prustiVersion is set to Tag."
 				},
 				"prusti-assistant.verifyOnSave": {
 					"type": "boolean",

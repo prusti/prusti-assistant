@@ -67,7 +67,7 @@ The main configuration options used by this extension are the following:
 * `prusti-assistant.verifyOnOpen`: Specifies if programs should be verified when opened.
 * `prusti-assistant.checkForUpdates`: Specifies if Prusti should check for updates at startup.
 * `prusti-assistant.javaHome`: Specifies the path of the Java home folder. Leave empty to auto-detect it.
-* `prusti-assistant.prustiVersion`: Allows to choose between the latest published Prusti version (the default), a fixed release specified as a GitHub tag (see the [list of releases](https://github.com/viperproject/prusti-dev/releases)), or a local build of Prusti.
+* `prusti-assistant.prustiVersion`: Allows to choose between the latest Prusti release supported by this version of the extension (the default, currently `v-2024-02-28-1817`), a fixed release specified as a GitHub tag (see the [list of releases](https://github.com/prusti/prusti/releases)), or a local build of Prusti.
 
 ### Inline Code Diagnostics
 

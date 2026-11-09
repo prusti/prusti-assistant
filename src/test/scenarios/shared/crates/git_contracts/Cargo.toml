@@ -4,4 +4,5 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-prusti-contracts = { git = "https://github.com/viperproject/prusti-dev.git" }
+prusti-contracts = { git = "https://github.com/prusti/prusti.git", tag = "v-2024-02-28-1817" }
+uuid = "=1.4.1"

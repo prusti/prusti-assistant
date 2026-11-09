@@ -5,3 +5,4 @@ edition = "2018"
 
 [dependencies]
 prusti-contracts = "0.1"
+uuid = "=1.4.1"

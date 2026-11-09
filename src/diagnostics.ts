@@ -371,6 +371,7 @@ async function queryCrateDiagnostics(
     );
     const cargoPrustiEnv = {
         ...process.env,  // Needed to run Rustup
+        ...prusti.cargoPrustiEnv,
         ...{
             PRUSTI_SERVER_ADDRESS: serverAddress,
             PRUSTI_QUIET: "true",

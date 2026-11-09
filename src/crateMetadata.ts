@@ -30,6 +30,7 @@ export async function queryCrateMetadata(
     );
     const cargoPrustiEnv = {
         ...process.env,  // Needed to run Rustup
+        ...prusti.cargoPrustiEnv,
         ...{
             PRUSTI_CARGO_COMMAND: "metadata",
             PRUSTI_QUIET: "true",

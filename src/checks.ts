@@ -59,7 +59,18 @@ export async function checkPrusti(prusti: PrustiLocation): Promise<[boolean, str
     }
     util.log("Checking Cargo-Prusti...");
     try {
-        await util.spawn(prusti.cargoPrusti, ["--help"]);
+        await util.spawn(
+            prusti.cargoPrusti,
+            ["--help"],
+            {
+                options: {
+                    env: {
+                        ...process.env,
+                        ...prusti.cargoPrustiEnv,
+                    },
+                },
+            }
+        );
     } catch (err) {
         util.log("Could not run cargo-prusti");
         util.log(`Error: ${err}`);

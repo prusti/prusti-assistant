@@ -36,7 +36,6 @@ export async function installDependencies(context: vscode.ExtensionContext, shou
         const viperToolsDirectory = await getViperToolsDirectory(location);
         const rustToolchainLocation = await getRustToolchainLocation(location);
         util.log(`Using Prusti at ${location}`)
-        prusti = new PrustiLocation(location, viperToolsDirectory, rustToolchainLocation);
 
         // only notify user about success if we reported anything in between;
         // otherwise there was nothing to be done.
@@ -47,9 +46,15 @@ export async function installDependencies(context: vscode.ExtensionContext, shou
         }
 
         // Install Rust toolchain
-        await rustup.ensureRustToolchainInstalled(
+        const cargoLocation = await rustup.ensureRustToolchainInstalled(
             context,
             rustToolchainLocation
+        );
+        prusti = new PrustiLocation(
+            location,
+            viperToolsDirectory,
+            rustToolchainLocation,
+            cargoLocation
         );
     } catch (err) {
         util.userError(
